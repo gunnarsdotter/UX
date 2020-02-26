@@ -21,7 +21,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={HomeScreen}
         options={{
           title: 'Bibliotek',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-bookmark" size={30} />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-fitness" size={30} />,
         }}
       />
       <BottomTab.Screen
