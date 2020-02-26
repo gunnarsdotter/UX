@@ -15,7 +15,11 @@ export default function BottomTabNavigator({ navigation, route }) {
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
 
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}
+      tabBarOptions={{
+        activeTintColor: '#56C596',
+        inactiveTintColor: 'gray',
+      }}>
       <BottomTab.Screen
         name="Dagbok"
         component={HomeScreen}
@@ -42,6 +46,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Statistik"
+        
         component={HomeScreen}
         options={{
           title: 'Statistik',
