@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabBarIcon from '../components/TabBarIcon';
+
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 
@@ -19,16 +20,16 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Dagbok"
         component={HomeScreen}
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: 'Bibliotek',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-bookmark" size={30} />,
         }}
       />
       <BottomTab.Screen
         name="Kalender"
         component={LinksScreen}
         options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: 'Kalender',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-calendar" size={30} />,
         }}
       />
       <BottomTab.Screen
@@ -36,23 +37,23 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={HomeScreen}
         options={{
           title: '',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-compass" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-add-circle" size={40} />,
         }}
       />
       <BottomTab.Screen
-        name="Statestik"
+        name="Statistik"
         component={HomeScreen}
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: 'Statistik',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-stats" size={30}/>,
         }}
       />
       <BottomTab.Screen
-        name="MinProfil"
+        name="Profil"
         component={HomeScreen}
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: 'Profil',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" size={30}/>,
         }}
       />
     </BottomTab.Navigator>
