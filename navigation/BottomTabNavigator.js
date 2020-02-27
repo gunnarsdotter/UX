@@ -21,7 +21,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         inactiveTintColor: 'gray',
       }}>
       <BottomTab.Screen
-        name="Dagbok"
+        name="Bibliotek"
         component={HomeScreen}
         options={{
           title: 'Bibliotek',
