@@ -3,6 +3,7 @@ import { SafeAreaView, Platform, StyleSheet, TouchableOpacity, View, FlatList, A
 import { ScrollView } from 'react-native-gesture-handler';
 import { Container, Header, Content, List, ListItem, Text, Left, Right } from 'native-base';
 import {Icon} from 'react-native-elements'
+import Button from './../components/Button.js'
 import Swipeable from "react-native-gesture-handler/Swipeable";
 //import { render } from 'react-dom';
 import { GestureHandler } from 'expo';
@@ -18,28 +19,30 @@ export default function HomeScreen() {
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <List>
       <Swipeable renderLeftActions={LeftActions} 
-                renderRightActions={RightActions}>
-            <ListItem noIndent style={styles.listItemstyle}>
-              <Left>
-              <Icon 
-                  name="fitness-center" //ios-brush ios-trash
-                  size={40}
-                  color="#000"
-                  onPress={() => console.log('hello')}
-              />
-              <View style={styles.box}>
-                <Text style={styles.headline} >Mitt Grymma Pass</Text>
-                <Text style={styles.details}>Ben, Mage</Text>
-              </View>
-              </Left>
-              <Right>
-              <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => Alert.alert('Simple Button pressed')}>
-                  <Text> Start </Text>
-                </TouchableOpacity>
-              </Right>
-            </ListItem>    
+                renderRightActions={RightActions}
+                >
+              <ListItem noIndent style={styles.listItemstyle}
+                onPress={() => Alert.alert('Redigera + hrj')}
+                onLongPress={() => Alert.alert('skaka och radera')}
+              >
+                <Left>
+                <Icon 
+                    name="fitness-center" //ios-brush ios-trash
+                    size={40}
+                    color="#000"
+                    onPress={() => console.log('hello')}
+                />
+                <View style={styles.box}>
+                  <Text style={styles.headline} >Mitt Grymma Pass</Text>
+                  <Text style={styles.details}>Ben, Mage</Text>
+                </View>
+                </Left>
+                <Right>
+                <Button
+                    onPress={() => Alert.alert('Simple Button pressed')}>
+                  </Button>
+                </Right>
+              </ListItem>    
           </Swipeable>        
           <Swipeable renderLeftActions={LeftActions} 
                 renderRightActions={RightActions}>
@@ -57,11 +60,9 @@ export default function HomeScreen() {
               </View>
               </Left>
               <Right>
-              <TouchableOpacity
-                  style={styles.button}
+              <Button
                   onPress={() => Alert.alert('Simple Button pressed')}>
-                  <Text> Start </Text>
-                </TouchableOpacity>
+                </Button>
               </Right>
             </ListItem>    
             </Swipeable>        
@@ -81,11 +82,9 @@ export default function HomeScreen() {
               </View>
               </Left>
               <Right>
-              <TouchableOpacity
-                  style={styles.button}
+              <Button
                   onPress={() => Alert.alert('Simple Button pressed')}>
-                  <Text> Start </Text>
-                </TouchableOpacity>
+                </Button>
               </Right>
             </ListItem>    
             </Swipeable>        
@@ -105,7 +104,7 @@ const LeftActions = ()=> {
             size={40}
             rever
             color="#fff"
-            onPress={() => console.log('hello')}
+            onPress={() => Alert.alert('Här ska du kunna redigera pass')}
         />
       </View>
       <View></View>
@@ -123,7 +122,7 @@ const RightActions = ()=> {
             size={40}
             rever
             color="#fff"
-            onPress={() => console.log('hello')}
+            onPress={() =>  Alert.alert('Passet har raderats')}
         />
       </View>
       <View></View>
