@@ -8,7 +8,8 @@ export default class Button extends React.Component {
         return(
             <View style={styles.container}>
                 <TouchableOpacity onPress={this.props.onPress} >
-                    <Text style={styles.button} >Click Me!</Text>
+                    <Text style={styles.button} 
+                    > {this.props.title}</Text>
                 </TouchableOpacity>
       </View>
         )
