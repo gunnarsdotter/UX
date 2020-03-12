@@ -1,179 +1,177 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, Platform, StyleSheet, TouchableOpacity, View, FlatList, Alert} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import * as WebBrowser from 'expo-web-browser';
+import { Container, Header, Content, List, ListItem, Text, Left, Right, Item } from 'native-base';
+import {Icon} from 'react-native-elements'
+import Button from './../components/Button.js'
+import Swipeable from "react-native-gesture-handler/Swipeable";
+import { GestureHandler } from 'expo';
 
-import { MonoText } from '../components/StyledText';
+const list = [
+  {
+    key: 1,
+    name: 'Mitt Grymma Pass',
+    pic: 'fitness-center',
+    bodypart: ['Ben', 'Mage']
+  },
+  {
+    key:2,
+    name: 'Fit it Pass',
+    pic: 'favorite-border',
+    bodypart: ['Armar, ', 'Bröst']
+  },
+  {
+    key:3,
+    name: 'Squatit',
+    pic: 'airline-seat-legroom-extra',
+    bodypart: ['Ben, ', 'Rumpa']
+  },
+  {
+    key:4,
+    name: 'Run',
+    pic: 'directions-run',
+    bodypart: ['Helkropp']
+  }
+]
 
 export default function HomeScreen() {
   return (
+    
     <View style={styles.container}>
+      <Text style={styles.titleText}> Mina Pass</Text>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
-
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-
-          <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change any of the text, save the file, and your app will automatically reload.
-          </Text>
-        </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-          </TouchableOpacity>
-        </View>
+      
+      <List containerStyle={{marginBottom: 20}}>
+        {
+          list.map((i) => (
+            <Swipeable renderLeftActions={LeftActions} 
+                renderRightActions={RightActions}
+                >
+              <ListItem
+                noIndent style={styles.listItemstyle}
+                onPress={() => Alert.alert('Redigera pass')}
+                onLongPress={() => Alert.alert('skaka och radera')}
+              >
+              <Left>
+                <Icon 
+                    name={i.pic} //ios-brush ios-trash
+                    size={40}
+                    color="#000"
+                />
+                <View style={styles.box}>
+          <Text style={styles.headline} >{i.name}</Text>
+          <Text style={styles.details}>{i.bodypart}</Text>
+                </View>
+                </Left>
+                <Right>
+                <Button
+                    title="STARTA"
+                    onPress={() => Alert.alert('Starta pass')}>
+                  </Button>
+                </Right>
+              </ListItem>  
+              </Swipeable>      
+          ))
+        }
+          </List>
       </ScrollView>
-
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-        <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</MonoText>
-        </View>
-      </View>
     </View>
   );
+}
+
+const LeftActions = ()=> {
+  return (
+    <View style={styles.backgroundswipe}>
+      <View style={styles.Leftcolumn}>
+      <Icon 
+            name="create" //ios-brush ios-trash
+            type="Ionicons"
+            size={40}
+            rever
+            color="#fff"
+            onPress={() => Alert.alert('Här ska du kunna redigera pass')}
+        />
+      </View>
+      <View></View>
+    </View>
+    
+  )
+}
+const RightActions = ()=> {
+  return (
+    <View style={styles.backgroundswipe}>
+      <View style={styles.Leftcolumn}>
+      <Icon 
+            name="delete" //ios-brush ios-trash
+            type="In"
+            size={40}
+            rever
+            color="#fff"
+            onPress={() =>  Alert.alert('Passet har raderats')}
+        />
+      </View>
+      <View></View>
+    </View>
+    
+  )
 }
 
 HomeScreen.navigationOptions = {
   header: null,
 };
 
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use useful development
-        tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
-}
-
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
-}
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
-  );
-}
-
 const styles = StyleSheet.create({
+  titleText:{
+    margin:0,
+    textAlign: "center",
+    fontSize:40,
+    color: "#fff",
+    backgroundColor:"#56C596",
+    padding: 30,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
   contentContainer: {
-    paddingTop: 30,
+    paddingTop: 0,
   },
-  welcomeContainer: {
+  listItemstyle:{
+    backgroundColor: "white", 
+    borderWidth: 2,
+    borderStyle: "solid",
+    borderColor: "#B2B8B8",
+    borderRadius: 5
+  },
+  box: {
+    flex: 1, 
+    flexDirection: "column",
+    paddingLeft: 20  
+  },
+  headline: {
+    alignSelf: "flex-start",
+  }, 
+  details: {
+    alignSelf: "flex-start",
+    fontSize: 12,  
+  }, 
+  button: {
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
+    backgroundColor: '#56C596',
+    padding: 10
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
+  Leftcolumn:{
+    flex:1,
+    width: 90,
+    justifyContent: "center",
+    alignItems:"center"
+    
   },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
+  backgroundswipe:{
+    backgroundColor:"#B2B8B8",
+    borderRadius: 5
+  }
+  
+  
+
 });
