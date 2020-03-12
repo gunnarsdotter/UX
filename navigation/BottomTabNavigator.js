@@ -4,6 +4,7 @@ import TabBarIcon from '../components/TabBarIcon';
 
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
+import StatScreen from '../screens/StatScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -47,7 +48,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       <BottomTab.Screen
         name="Statistik"
         
-        component={HomeScreen}
+        component={StatScreen}
         options={{
           title: 'Statistik',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-stats" size={30}/>,
