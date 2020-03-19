@@ -49,7 +49,7 @@ export default function HomeScreen() {
                 >
               <ListItem
                 noIndent style={styles.listItemstyle}
-                onPress={() => Alert.alert('Redigera pass')}
+                onPress={() => Alert.alert('Här visas info om pass')}
                 onLongPress={() => Alert.alert('skaka och radera')}
               >
               <Left>

@@ -19,33 +19,11 @@ export default class PlusScreen extends React.Component{
     return (
       <ScrollView>
          <View style={{marginTop: 22}}>
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-          }}>
-          <View style={{marginTop: 22}}>
-            <View>
+            <View style={styles.row}>
               <Text>Hello World!</Text>
+              <Text> Poop</Text>
 
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
             </View>
-          </View>
-        </Modal>
-
-        <TouchableHighlight
-          onPress={() => {
-            this.setModalVisible(true);
-          }}>
-          <Text>Show Modal</Text>
-        </TouchableHighlight>
       </View>
        
       </ScrollView>
@@ -58,6 +36,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fafafa',
+  },
+  row: {
+    flex:1,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
   },
   
   optionText: {

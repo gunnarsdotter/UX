@@ -32,6 +32,7 @@ export default class LinksScreen extends React.Component{
             '2020-03-04': {marked: true, dotColor: '#56C596'},
             '2020-03-17': {marked: true, dotColor: '#56C596'},
             '2020-03-18': {marked: true, dotColor: '#56C596', activeOpacity: 0},
+            '2020-03-24': {marked: true, dotColor: '#56C596', activeOpacity: 0},
           }}
           theme={{
             backgroundColor: '#ffffff',
@@ -86,6 +87,18 @@ export default class LinksScreen extends React.Component{
                 </Body>
                 <Right>
                   <Text note>11:00 - 11:30</Text>
+                </Right>
+                </ListItem> 
+              </List>: <View></View>}
+              {this.state.currentDay == 24 ?
+              <List>
+                <ListItem>
+                <Body>
+                  <Text>Cardio</Text>
+                  <Text note>Run baby run!</Text>
+                </Body>
+                <Right>
+                  <Text note>11:00 - 12:00</Text>
                 </Right>
                 </ListItem> 
               </List>: <View></View>}
