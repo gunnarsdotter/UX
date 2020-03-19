@@ -4,6 +4,7 @@ import TabBarIcon from '../components/TabBarIcon';
 
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
+import PlusScreen from '../screens/PlusScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -38,7 +39,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Plus"
-        component={HomeScreen}
+        component={PlusScreen}
         options={{
           title: '',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-add-circle" size={40} />,
