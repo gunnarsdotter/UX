@@ -1,94 +1,78 @@
 import * as React from 'react';
 import { SafeAreaView, Platform, StyleSheet, TouchableOpacity, View, FlatList, Alert} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Container, Header, Content, List, ListItem, Text, Left, Right } from 'native-base';
+import { Container, Header, Content, List, ListItem, Text, Left, Right, Item } from 'native-base';
 import {Icon} from 'react-native-elements'
+import Button from './../components/Button.js'
 import Swipeable from "react-native-gesture-handler/Swipeable";
-//import { render } from 'react-dom';
 import { GestureHandler } from 'expo';
-//const {Swipeable} = GestureHandler;
 
-
+const list = [
+  {
+    key: 1,
+    name: 'Mitt Grymma Pass',
+    pic: 'fitness-center',
+    bodypart: ['Ben', 'Mage']
+  },
+  {
+    key:2,
+    name: 'Fit it Pass',
+    pic: 'favorite-border',
+    bodypart: ['Armar, ', 'Bröst']
+  },
+  {
+    key:3,
+    name: 'Squatit',
+    pic: 'airline-seat-legroom-extra',
+    bodypart: ['Ben, ', 'Rumpa']
+  },
+  {
+    key:4,
+    name: 'Run',
+    pic: 'directions-run',
+    bodypart: ['Helkropp']
+  }
+]
 
 export default function HomeScreen() {
-  //onActionPress = () => console.log("You have clicked on the action option")
- 
   return (
+    
     <View style={styles.container}>
+      <Text style={styles.titleText}> Mina Pass</Text>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <List>
-      <Swipeable renderLeftActions={LeftActions} 
-                renderRightActions={RightActions}>
-            <ListItem noIndent style={styles.listItemstyle}>
-              <Left>
-              <Icon 
-                  name="fitness-center" //ios-brush ios-trash
-                  size={40}
-                  color="#000"
-                  onPress={() => console.log('hello')}
-              />
-              <View style={styles.box}>
-                <Text style={styles.headline} >Mitt Grymma Pass</Text>
-                <Text style={styles.details}>Ben, Mage</Text>
-              </View>
-              </Left>
-              <Right>
-              <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => Alert.alert('Simple Button pressed')}>
-                  <Text> Start </Text>
-                </TouchableOpacity>
-              </Right>
-            </ListItem>    
-          </Swipeable>        
-          <Swipeable renderLeftActions={LeftActions} 
-                renderRightActions={RightActions}>
-            <ListItem noIndent style={styles.listItemstyle}>
-              <Left>
-              <Icon 
-                  name="favorite-border" //ios-brush ios-trash
-                  size={40}
-                  color="#000"
-                  onPress={() => console.log('hello')}
-              />
-              <View style={styles.box}>
-                <Text style={styles.headline} >Fit it Pass</Text>
-                <Text style={styles.details}>Armar, Bröst</Text>
-              </View>
-              </Left>
-              <Right>
-              <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => Alert.alert('Simple Button pressed')}>
-                  <Text> Start </Text>
-                </TouchableOpacity>
-              </Right>
-            </ListItem>    
-            </Swipeable>        
+      
+      <List containerStyle={{marginBottom: 20}}>
+        {
+          list.map((i) => (
             <Swipeable renderLeftActions={LeftActions} 
-                renderRightActions={RightActions}>
-            <ListItem noIndent style={styles.listItemstyle}>
+                renderRightActions={RightActions}
+                >
+              <ListItem
+                noIndent style={styles.listItemstyle}
+                onPress={() => Alert.alert('Redigera pass')}
+                onLongPress={() => Alert.alert('skaka och radera')}
+              >
               <Left>
-              <Icon 
-                  name="airline-seat-legroom-extra" //star-border, favorite-border
-                  size={40}
-                  color="#000"
-                  onPress={() => console.log('hello')}
-              />
-              <View style={styles.box}>
-                <Text style={styles.headline} >Squatit</Text>
-                <Text style={styles.details}>Ben, Rumpa</Text>
-              </View>
-              </Left>
-              <Right>
-              <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => Alert.alert('Simple Button pressed')}>
-                  <Text> Start </Text>
-                </TouchableOpacity>
-              </Right>
-            </ListItem>    
-            </Swipeable>        
+                <Icon 
+                    name={i.pic} //ios-brush ios-trash
+                    size={40}
+                    color="#000"
+                />
+                <View style={styles.box}>
+          <Text style={styles.headline} >{i.name}</Text>
+          <Text style={styles.details}>{i.bodypart}</Text>
+                </View>
+                </Left>
+                <Right>
+                <Button
+                    title="STARTA"
+                    onPress={() => Alert.alert('Starta pass')}>
+                  </Button>
+                </Right>
+              </ListItem>  
+              </Swipeable>      
+          ))
+        }
           </List>
       </ScrollView>
     </View>
@@ -105,7 +89,7 @@ const LeftActions = ()=> {
             size={40}
             rever
             color="#fff"
-            onPress={() => console.log('hello')}
+            onPress={() => Alert.alert('Här ska du kunna redigera pass')}
         />
       </View>
       <View></View>
@@ -123,7 +107,7 @@ const RightActions = ()=> {
             size={40}
             rever
             color="#fff"
-            onPress={() => console.log('hello')}
+            onPress={() =>  Alert.alert('Passet har raderats')}
         />
       </View>
       <View></View>
@@ -137,12 +121,20 @@ HomeScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
+  titleText:{
+    margin:0,
+    textAlign: "center",
+    fontSize:40,
+    color: "#fff",
+    backgroundColor:"#56C596",
+    padding: 30,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
   },
   contentContainer: {
-    paddingTop: 30,
+    paddingTop: 0,
   },
   listItemstyle:{
     backgroundColor: "white", 
