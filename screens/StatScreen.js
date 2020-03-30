@@ -8,51 +8,51 @@ const DATA = [
   {
     id: '1',
     title: '2 Mars',
-    incr : '+1',
+    incr : '+1kg',
   },
   {
     id: '2',
     title: '5 Mars',
-    incr : '-2',
+    incr : '-2kg',
   },
   {
     id: '3',
     title: '10 Mars',
-    incr : '+3',
+    incr : '+3kg',
   },
 ];
 const DATA2 = [
   {
     id: '1',
     title: '4 Mars',
-    incr : '-3',
+    incr : '-3kg',
   },
   {
     id: '2',
     title: '11 Mars',
-    incr :'+1',
+    incr :'+1kg',
   },
   {
     id: '3',
     title: '14 Mars',
-    incr : '+3',
+    incr : '+3kg',
   },
 ];
 const DATA3 = [
   {
     id: '1',
     title: '2 Mars',    
-    incr: '+0',
+    incr: '+0kg',
   },
   {
     id: '2',
     title: '5 Mars',
-    incr : '-1',
+    incr : '-1kg',
   },
   {
     id: '3',
     title: '10 Mars',
-    incr :'+2',
+    incr :'+2kg',
   },
 ];
 
@@ -70,18 +70,18 @@ class Display extends React.Component {
      return (
         <View style={styles.contentContainer}>
             
-             <Card> 
+             <Card style={styles.cardStyle} transparent> 
              <CardItem header> 
                   <Text style={{color:'#56C596', fontSize: 25, alignSelf: 'center'}}> {this.props.titleLabel} </Text>
               </CardItem>
-              <CardItem cardBody>
+              <CardItem>
                   <Image source={__DEV__
                     ? require('../assets/images/benboj.jpg')
-                    : require('../assets/images/benboj.jpg') } style={{height: 250, width: null, flex: 1, borderColor:'grey', borderWidth:1}}/>
+                    : require('../assets/images/benboj.jpg') } style={{height: 250, flex:1, borderColor:'grey', borderWidth:1}}/>
               </CardItem> 
              </Card>
             
-            
+            <Text style={styles.textStyle}> Utveckling</Text>
               <FlatList
                 data={this.props.data}
                 renderItem={({ item }) => <Item title={item.title} incr={item.incr} />}
@@ -109,7 +109,7 @@ export default class StatScreen extends React.Component {
           <Display titleLabel="Marklyft" data={DATA2}/>
         </View>
         <View style={styles.container}>
-          <Display titleLabel="Press" data={DATA3} />
+          <Display titleLabel="Axelpress" data={DATA3} />
         </View>
       </Swiper>
       
@@ -140,31 +140,35 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignContent: "space-between",
   },
-  statwindow: {
-    flex: 2,
-    
-  },
-  info:{
-    flex: 3,
-    
-  },
   listitem: {
-    backgroundColor: '#56C596',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    backgroundColor: '#ffffff',
+    padding: 10,
+    marginVertical: 7.5,
     alignContent: 'space-between',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderWidth: 0.8,
+    borderColor: 'lightgray',
+    borderLeftColor: 'white',
+    borderTopColor: 'white',
+    borderRightColor: 'white'
   },
   listtitle: {
-    fontSize: 20,
+    fontSize: 15,
     flex:1
   },
   listincr:{
-    fontSize: 20,
-    //flex:1,
+    fontSize: 15,
+    fontWeight: 'bold',
     alignSelf: 'flex-end'
-
+  },
+  textStyle: {
+    fontSize: 15,
+    alignSelf: 'center',
+    fontWeight: 'bold',
+  },
+  cardStyle: {
+    borderWidth: 0,
+    borderColor: 'white',
   }
 
 });
